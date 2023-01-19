@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-2">
+    {% if categories %}
+    {% for c in categories %}
+    <div class="col-md-6">
+        <div
+            class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative categories-card">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">{{ c.category_name }}</strong>
+                <h5 class="mb-0">View and update items in {{ c.category_name }} category</h5>
+                <a href="{% url 'markets:items' c.id %}" class="stretched-link arrow">→</a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No categories available for this market!</p>
+    {% endif %}
+</div>
+
+{% endblock %}
