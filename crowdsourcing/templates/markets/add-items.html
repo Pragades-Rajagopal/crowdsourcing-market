@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-2">
+    <div class="col-md-6">
+        <form action="{% url 'markets:postitem' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Item name</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="itemname" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="price" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">User</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="user" required>
+            </div>
+            <input name="category_id" value="{{ category_id }}" hidden>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

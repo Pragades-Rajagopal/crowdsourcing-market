@@ -1,0 +1,15 @@
+.markets-card {
+    background-color: hsl(340, 100%, 97%);
+}
+
+.categories-card {
+    background-color: hsl(60, 100%, 94%);
+}
+
+.items-card {
+    background-color: hsl(208, 100%, 97%);
+}
+
+.arrow {
+    font-size: x-large;
+}
