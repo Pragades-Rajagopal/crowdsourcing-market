@@ -16,7 +16,7 @@ def categories(request, market_id):
 
 
 def items(request, category_id):
-    items = Items.objects.filter(category_id=category_id)
+    items = Items.objects.filter(category_id=category_id).order_by('price')
     return render(request, 'markets/items.html', {"items": items, "category_id": category_id})
 
 
@@ -34,5 +34,5 @@ def postitem(request):
                    updated_by=updated_by, category_id=category_id)
     inputs.save()
     
-    items = Items.objects.filter(category_id=category_id)
+    items = Items.objects.filter(category_id=category_id).order_by('price')
     return render(request, 'markets/items.html', {"items": items, "category_id": category_id})
