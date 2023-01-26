@@ -17,7 +17,7 @@
             {% for i in items %}
             <tr>
                 <th scope="row">{{ i.id }}</th>
-                <td>{{ i.item_name }}</td>
+                <td><a href="{% url 'markets:getItem' i.id %}">{{ i.item_name }}</a></td>
                 <td>{{ i.price }}</td>
                 <td>{{ i.updated_by }}</td>
                 <td>{{ i.updated_at }}</td>

@@ -8,5 +8,7 @@ urlpatterns = [
     path('categories/<int:market_id>', views.categories, name='categories'),
     path('items/<int:category_id>', views.items, name='items'),
     path('add-item/<int:category_id>', views.get_addItems, name='get_addItems'),
-    path('postitem/', views.postitem, name='postitem')
+    path('postitem/', views.postitem, name='postitem'),
+    path('get-item/<int:item_id>', views.getItem, name='getItem'),
+    path('update-item/<int:item_id>', views.updateItem, name='updateitem')
 ]
