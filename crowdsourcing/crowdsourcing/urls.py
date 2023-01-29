@@ -21,5 +21,6 @@ app_name = 'markets'
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("markets/", include('markets.urls')),
+    path("users/", include('users.urls')),
     path('', mainpage)
 ]
