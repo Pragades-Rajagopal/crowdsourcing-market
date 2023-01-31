@@ -51,8 +51,7 @@ def searchitem(request):
                         "updated_at": i.updated_at
                     })
                 else:
-                    message = "Item unavailable in {}. Try searching without district!".format(
-                        district)
+                    message = f"Item unavailable in {district}. Try searching without district!"
         else:
             message = "Item currently unavailable!"
 
@@ -73,8 +72,7 @@ def searchitem(request):
                         "updated_at": i.updated_at
                     })
                 else:
-                    message = "Item unavailable in {0}, {1}. Try searching without area & district!".format(
-                        area, district)
+                    message = f"Item unavailable in {area}, {district}. Try searching without area & district!"
         else:
             message = "Item currently unavailable!"
 
