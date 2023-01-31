@@ -1,33 +1,122 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html lang="en">
 
-{% block content %}
-<div class="row mb-2">
-    <div class="col-md-6">
-        <h3>Search for item...</h3>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Welcome to iCoder. A blog for coding enthusiasts">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+    <title>FAIR PRICE - Get best prices</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/users">FAIR PRICE - USER PORTAL</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/users">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container my-4">
+
         <div class="row mb-2">
             <div class="col-md-6">
-                <form action="{% url 'users:searchitem' %}" method="post">
-                    {% csrf_token %}
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Item name</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="itemname" required>
+                <h3>Search for item...</h3>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <form action="{% url 'users:searchitem' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Item name</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" name="itemname" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">District</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" name="district">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Area</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" name="area">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">District</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="district">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Area</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="area">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-{% endblock %}
+        {% if showtable %}
+        <div class="row mb-2">
+            {% if results %}
+            <table class="table">
+                <p>Search result...</p>
+                <thead>
+                    <tr>
+                        <th scope="col"># Item ID</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Price ₹.</th>
+                        <th scope="col">Market Name</th>
+                        <th scope="col">District</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">Updated At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in results %}
+                    <tr>
+                        <th scope="row">{{ i.item_id }}</th>
+                        <td>{{ i.item_name }}</td>
+                        <td>{{ i.price }}</td>
+                        <td>{{ i.market_name }}</td>
+                        <td>{{ i.district }}</td>
+                        <td>{{ i.area }}</td>
+                        <td>{{ i.updated_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p style="color: red;"><b>{{ message }}</b></p>
+            {% endif %}
+            <br>
+        </div>
+        {% endif %}
+
+    </div>
+    <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>© 2020-2021 FAIR PRICE, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
